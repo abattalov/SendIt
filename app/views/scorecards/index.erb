@@ -1,0 +1,10 @@
+<h1>Welcome to SendIt!</h1>
+<a href="/scorecards/new">Add a new scorecard here</a><br><br>
+<ul>
+    <% @scorecard.each do |card| %>
+    <li>
+        <%= card.course_name %>
+    </li>
+    <% end %>
+
+</ul>
