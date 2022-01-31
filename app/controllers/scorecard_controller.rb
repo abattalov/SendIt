@@ -23,4 +23,24 @@ class ScorecardController < ApplicationController
             redirect "/scorecards/new"
         end
     end
+
+    get '/scorecards/:id/edit' do
+        @scorecard = Scorecard.find_by_id(params[:id])
+        erb :'/scorecards/edit'
+    end
+
+    patch '/scorecards/:id' do
+        @scorecard = Scorecard.find_by_id(params[:id])
+        params.delete("_method")
+        @scorecard.update(params)
+        
+        redirect "/scorecards/#{@scorecard.id}"
+    end
+
+    delete "/scorecards/:id" do
+        @scorecard = Scorecard.find_by_id(params[:id])
+        @scorecard.destroy
+        redirect "/scorecards"
+    end
+
 end

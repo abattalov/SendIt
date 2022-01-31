@@ -3,3 +3,11 @@
 <h2><%= @scorecard.strokes %></h2>
 <h2><%= @scorecard.score %></h2>
 <h2><%= @scorecard.date %></h2>
+
+
+<input type="button" onclick="location.href='/scorecards/<%=@scorecard.id%>/edit';" value="EDIT">
+
+<form action="/scorecards/<%=@scorecard.id%>" method="POST">
+    <input type="hidden" id="hidden" name="_method" value="DELETE">
+    <input type="submit" value="DELETE">
+</form>

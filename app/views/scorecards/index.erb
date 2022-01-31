@@ -3,7 +3,9 @@
 <ul>
     <% @scorecard.each do |card| %>
     <li>
+        <a href="/scorecards/<%=card.id%>">
         <%= card.course_name %>
+        </a>
     </li>
     <% end %>
 
