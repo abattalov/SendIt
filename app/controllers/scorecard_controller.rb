@@ -23,10 +23,10 @@ class ScorecardController < ApplicationController
     get '/scorecards/:id' do
         if logged_in?
             @scorecard = Scorecard.find_by_id(params[:id])
-            if @scorecard && @scorecard.user_id != current_user
-                erb :'/scorecards/showless'
-            else
+            if @scorecard.user_id == current_user.id
                 erb :'/scorecards/show'
+            else
+                erb :'/scorecards/showless'
             end
         else
             flash[:alert] = "You have to be logged in to view this page!"
@@ -35,7 +35,7 @@ class ScorecardController < ApplicationController
     end
 
     post '/scorecards' do
-        scorecard = Scorecard.new(params)
+        scorecard = current_user.scorecards.new(params)
         if scorecard.save
             redirect "/scorecards/#{scorecard.id}"
         else
@@ -71,7 +71,7 @@ class ScorecardController < ApplicationController
 
     delete "/scorecards/:id" do
         @scorecard = Scorecard.find_by_id(params[:id])
-        if @scorecard && @scorecard.user_id == current_user
+        if @scorecard.user_id == current_user.id
             @scorecard.destroy
             redirect "/scorecards"
         else
