@@ -1,18 +1,37 @@
 class ScorecardController < ApplicationController
 
     get '/scorecards' do
-        @scorecard = Scorecard.all
-        erb :'/scorecards/index'
+        if logged_in?
+            @scorecard = Scorecard.all
+            erb :'/scorecards/index'
+        else
+            flash[:alert] = "You have to be logged in to view this page!"
+            redirect '/login'
+        end
     end
 
     get '/scorecards/new' do
-        @scorecard = Scorecard.new(params)
-        erb :'/scorecards/new'
+        if logged_in?
+            @scorecard = Scorecard.new(params)
+            erb :'/scorecards/new'
+        else
+            flash[:alert] = "You have to be logged in to view this page!"
+            redirect '/login'
+        end
     end
 
     get '/scorecards/:id' do
-        @scorecard = Scorecard.find_by_id(params[:id])
-        erb :'/scorecards/show'
+        if logged_in?
+            @scorecard = Scorecard.find_by_id(params[:id])
+            if @scorecard && @scorecard.user_id != current_user
+                erb :'/scorecards/showless'
+            else
+                erb :'/scorecards/show'
+            end
+        else
+            flash[:alert] = "You have to be logged in to view this page!"
+            redirect '/login'
+        end
     end
 
     post '/scorecards' do
@@ -25,8 +44,17 @@ class ScorecardController < ApplicationController
     end
 
     get '/scorecards/:id/edit' do
-        @scorecard = Scorecard.find_by_id(params[:id])
-        erb :'/scorecards/edit'
+        if logged_in?
+            @scorecard = Scorecard.find_by_id(params[:id])
+            if @scorecard.user_id != current_user.id || @scorecard.user_id == nil
+                redirect '/scorecards'
+            else
+                erb :'/scorecards/edit'
+            end
+        else
+            flash[:alert] = "You have to be logged in to view this page!"
+            redirect '/login'
+        end
     end
 
     patch '/scorecards/:id' do
@@ -34,13 +62,21 @@ class ScorecardController < ApplicationController
         params.delete("_method")
         @scorecard.update(params)
         
-        redirect "/scorecards/#{@scorecard.id}"
+        if @scorecard.update(params)
+            redirect "/scorecards/#{@scorecard.id}"
+        else
+            redirect "/scorecards/new"
+        end
     end
 
     delete "/scorecards/:id" do
         @scorecard = Scorecard.find_by_id(params[:id])
-        @scorecard.destroy
-        redirect "/scorecards"
+        if @scorecard && @scorecard.user_id == current_user
+            @scorecard.destroy
+            redirect "/scorecards"
+        else
+            redirect "/scorecards"
+        end
     end
 
 end

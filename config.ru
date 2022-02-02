@@ -6,5 +6,8 @@ end
 
 run ApplicationController
 use Rack::MethodOverride
-use ScorecardController
 use UserController
+use ScorecardController
+use SessionController
+
+
