@@ -23,11 +23,7 @@ class ScorecardController < ApplicationController
     get '/scorecards/:id' do
         if logged_in?
             @scorecard = Scorecard.find_by_id(params[:id])
-            if @scorecard.user_id == current_user.id
-                erb :'/scorecards/show'
-            else
-                erb :'/scorecards/showless'
-            end
+            erb :'/scorecards/show'
         else
             flash[:alert] = "You have to be logged in to view this page!"
             redirect '/login'
