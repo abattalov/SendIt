@@ -1,1 +1,12 @@
-<h1><%= @user.username %></h1>
+<h1><%= @user.name %>'s Scorecards</h1>
+
+<ul>
+    <% @user.scorecards.each do |card|%>
+
+    <li>
+        <a href="/scorecards/<%=card.id%>"><%= card.course_name %></a>
+    </li>
+  
+    <% end %>
+
+</ul>

@@ -1,7 +1,7 @@
 class UserController < ApplicationController
 
     get '/users' do
-        @user = User.all
+        @users = User.all
         erb :'/users/index'
     end
 
@@ -21,6 +21,7 @@ class UserController < ApplicationController
 
     get '/users/:id' do
         @user = User.find_by_id(params[:id])
+        @scorecard = current_user.scorecards
         erb :'/users/show'
     end
 end
