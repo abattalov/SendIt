@@ -1,23 +1,15 @@
-<div class="container">
-  <header><img src="images/corneal-small.png" class="img-responsive main-image"></header>
-  <div class="col-md-8 col-md-offset-2">
-    <h2>Sinatra Template Default Page</h2>
+<h1>SendIt ⤴ </h1>
 
-    <div class="content">
-      <p>Welcome to the Sinatra Template! If you're seeing this page, then everything is working
-      as expected. To get started, delete this file (<code>app/views/welcome.erb)</code> and begin adding
-      your own actions to <code>application_controller.rb</code>. For more information, see the <a href="https://github.com/thebrianemory/corneal">README</a>.</p>
-    </div>
+<br><br>
+<h2>Welcome to SendIt!</h2>
 
-    <div class="sidebar">
-      <h3>Environment</h3>
-      <ul>
-        <li><b>Ruby:</b> <%= RUBY_VERSION %></li>
-        <li><b>Environment:</b> <%= ENV["RACK_ENV"] %></li>
-        <li><b>Server:</b> <%= @env["SERVER_SOFTWARE"] %></li>
-        <li><b>Port:</b> <%= @env["SERVER_PORT"] %></li>
-      </ul>
-    </div>
+<p>SendIt is a personal score tracker for disc golf. It allows you to keep track of your scores
+   by making scorecards and filling out details such as: Course name, Date, Strokes, and overall Score.
+   Please sign up to start using the app. Once logged in, your scorecards will be saved in our database
+   where you can check on them over time and view your progression. Happy sending!
+</p>
 
-  </div>
-</div>
+<% if !logged_in? %>
+  <input type="button" onclick="location.href='/signup';" value="Sign Up">
+  <input type="button" onclick="location.href='/login';" value="Login">
+<% end %>

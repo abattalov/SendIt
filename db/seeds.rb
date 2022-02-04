@@ -11,7 +11,8 @@ end
     Scorecard.create(course_name: Faker::Movies::HarryPotter.location,
     strokes: Faker::Number.between(from: 1, to: 40),
     score: Faker::Number.between(from: 1, to: 10),
-    date: Faker::Date.backward(days: 365))
+    date: Faker::Date.backward(days: 365),
+    user_id: User.ids.sample)
 end
 
 puts "seeds planted baybay!!!"

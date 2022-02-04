@@ -1,8 +1,13 @@
 class UserController < ApplicationController
 
     get '/users' do
-        @users = User.all
-        erb :'/users/index'
+        if logged_in?
+            @users = User.all
+            erb :'/users/index'
+        else
+            flash[:alert] = "You have to be logged in to view this page!"
+            redirect "/login"
+        end
     end
 
     get '/signup' do

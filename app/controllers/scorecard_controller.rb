@@ -21,6 +21,7 @@ class ScorecardController < ApplicationController
     end
 
     get '/scorecards/:id' do
+        @users = User.all
         if logged_in?
             @scorecard = Scorecard.find_by_id(params[:id])
             erb :'/scorecards/show'
