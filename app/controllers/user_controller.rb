@@ -20,6 +20,7 @@ class UserController < ApplicationController
             session[:user_id] = @user.id
             redirect "/scorecards"
         else
+            flash[:alert] = "That username is already in use, please make a different username."
             erb :'users/signup'
         end
     end
