@@ -1,4 +1,4 @@
-To use this app, just clone, run rake db:migrate and then run shotgun. Everything should be set up.
+# SendIt
 
 SendIt is a personal score tracker for disc golf. It allows you to keep track of your scores
 by making scorecards and filling out details such as: Course name, Date, Strokes, and overall Score.
@@ -9,9 +9,6 @@ Once logged in, you can view scorecards and other users scorecards.
 
 The main point of this app was to keep track of your scores and compare progress over time. 
 
-# ThrowHere
-
-This Ruby Gem provides a CLI that gives information on the disc golf courses in the United States as listed on the Professional Disc Golf Association (PDGA) website.
 
 ## Installation and Usage
 
