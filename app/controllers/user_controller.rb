@@ -27,7 +27,7 @@ class UserController < ApplicationController
 
     get '/users/:id' do
         @user = User.find_by_id(params[:id])
-        @scorecard = current_user.scorecards
+        # @scorecard = current_user.scorecards
         erb :'/users/show'
     end
 end
