@@ -15,6 +15,10 @@ class ApplicationController < Sinatra::Base
     erb :welcome
   end
 
+  get "/about" do
+    erb :"/about/about"
+  end
+
   helpers do
 
     def logged_in?
@@ -23,6 +27,10 @@ class ApplicationController < Sinatra::Base
 
     def current_user
       @user ||= User.find_by(id: session[:user_id]) if session[:user_id]
+    end
+
+    def all_users
+      @users = User.all
     end
   end
 

@@ -4,7 +4,7 @@
 <table class="table table-hover table-dark">
   <thead>
     <tr>
-      <th scope="col">User ID</th>
+      <th scope="col">Username</th>
       <th scope="col">Date</th>
       <th scope="col">Course Name</th>
       <th scope="col">Strokes</th>
@@ -14,7 +14,7 @@
   <tbody>
     <% @scorecard.each do |card| %>
         <tr>
-            <th scope="row"><%= card.user_id%></th>
+            <th scope="row"><%= card.user.username%></th>
             <td><%= card.date %></td>
             <td><a href="/scorecards/<%=card.id%>"><%= card.course_name %></a></td>
             <td><%= card.strokes %></td>

@@ -1,0 +1,12 @@
+<h1>Welcome to our about page!!</h1>
+
+<% if logged_in? %>
+    <h2>Thanks for being a member, <%=current_user.username%>!</h2>
+<% else %>
+    <h2>Please login or sign up.</h2>
+    <input type="button" onclick="location.href='/signup';" value="Sign Up">
+    <input type="button" onclick="location.href='/login';" value="Login"> 
+<% end %>
+
+
+
